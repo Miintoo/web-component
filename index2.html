@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script>
+      const app = document.querySelector('#app');
+
+      const state = {
+        people: []
+      };
+
+      const render = () => {
+        const people = state.people;
+        app.innerHTML = `<ul>${people
+          .map(
+            (person) => `
+          <li>${person.name}</li>`
+          )
+          .join('')}
+          <button class="add_btn">추가</button>
+          </ul>`;
+        setEvent();
+      };
+
+      const setEvent = () => {
+        document.querySelector('.add_btn').addEventListener('click', () => {
+          setState({ name: 'minto', age: Math.random() * 100 + 1 });
+        });
+      };
+
+      const setState = (newState) => {
+        const person = state.people;
+        person.push(newState);
+
+        render();
+      };
+
+      setState({ name: 'James', age: 16 });
+    </script>
+  </body>
+</html>
